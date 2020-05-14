@@ -1,4 +1,4 @@
-.grid {
+.maze {
     display: flex;
     flex-wrap: wrap;
     width: 560px;
@@ -6,23 +6,18 @@
     border: solid black;
 }
   
-.grid div {
+.maze div {
     width: 20px;
     height: 20px;
 }
 
-/*.pac-dot {
-    background-color: green;   
-    border: 5px solid white;
-    box-sizing: border-box;
-}*/
 
 .wall {
-    background-color: LightSkyBlue;
+    background-color: black;
 }
 
-.power-pellet {
-    background-color: DeepPink;
+.judy {
+    background-color: hotpink;
     border-radius: 10px;
 }
 
@@ -31,11 +26,11 @@
 }
 
 .pinky {
-    background-color: purple;
+    background-color: pink;
 }
 
 .inky {
-    background-color: cyan;
+    background-color: green;
 }
 
 .clyde {

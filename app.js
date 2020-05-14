@@ -4,42 +4,40 @@ document.addEventListener('DOMContentLoaded', () => {
   //const mySound 
   const width = 28
   let score = 0
-  const grid = document.querySelector('.grid')
+  const maze = document.querySelector('.maze')
   const layout = [
     1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,
-    1,4,4,4,4,4,4,4,4,4,4,4,4,1,1,4,4,4,4,4,4,4,4,4,4,4,3,1,
-    1,4,1,4,1,1,4,1,1,1,1,1,4,1,1,4,1,1,1,1,1,4,1,1,4,1,4,1,
-    1,4,1,4,1,1,4,4,4,4,4,4,4,1,1,4,4,4,4,4,4,4,1,1,4,1,4,1,
-    1,4,1,4,1,1,4,1,1,1,1,1,4,1,1,4,1,1,1,1,1,4,1,1,4,1,4,1,
-    1,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,1,
-    1,1,1,1,1,1,4,1,1,1,1,2,2,2,2,2,2,1,1,1,1,4,1,1,1,1,1,1,
-    1,1,1,1,1,1,4,1,1,1,1,2,2,2,2,2,2,1,1,1,1,4,1,1,1,1,1,1,
-    1,4,4,4,4,4,4,4,4,4,4,1,4,4,4,4,1,4,4,4,4,4,4,4,4,4,4,1,
-    1,4,1,1,1,1,4,1,1,1,1,1,4,4,4,4,1,1,1,1,1,4,1,1,1,1,4,1,
-    1,4,1,4,1,1,4,1,1,4,4,4,4,4,4,4,4,4,4,1,1,4,1,1,4,1,4,1,
-    1,4,1,4,1,1,4,1,1,4,1,1,1,4,4,1,1,1,4,1,1,4,1,1,4,1,4,1,
-    1,4,1,4,1,1,4,1,1,4,1,4,4,4,4,4,4,1,4,1,1,4,1,1,4,1,4,1,
-    1,4,4,4,4,4,4,4,4,4,1,4,4,4,4,4,4,1,4,4,4,4,4,4,4,4,4,1,
-    1,4,1,1,4,1,4,1,1,4,1,1,1,4,4,1,1,1,4,1,1,4,1,4,1,1,4,1,
-    1,4,1,1,4,1,4,1,1,4,4,4,4,4,4,4,4,4,4,1,1,4,1,4,1,1,4,1,
-    1,4,1,1,1,1,4,1,1,4,1,1,1,1,1,1,1,1,4,1,1,4,1,1,1,1,4,1,
-    1,4,4,4,1,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,1,4,4,4,1,
-    1,4,1,1,1,1,4,1,1,1,1,1,4,1,1,4,1,1,1,1,1,4,1,1,1,1,4,1,
-    1,4,1,1,1,1,4,1,1,1,1,1,4,1,1,4,1,1,1,1,1,4,1,1,1,1,4,1,
-    1,4,4,4,1,1,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,1,1,4,4,4,1,
-    1,1,1,4,1,1,4,1,1,4,1,1,1,1,1,1,1,1,4,1,1,4,1,1,4,1,1,1,
-    1,1,1,4,1,1,4,1,1,4,1,1,1,1,1,1,1,1,4,1,1,4,1,1,4,1,1,1,
-    1,4,4,4,4,4,4,1,1,4,4,4,4,1,1,4,4,4,4,1,1,4,4,4,4,4,4,1,
-    1,4,1,1,4,1,1,4,4,1,1,1,4,1,1,4,1,1,1,4,4,1,1,4,1,1,4,1,
-    1,4,1,1,4,1,1,4,4,1,1,1,4,1,1,4,1,1,1,4,4,1,1,4,1,1,4,1,
-    1,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,1,
+    1,0,0,0,0,0,1,0,0,0,0,0,0,1,0,0,0,0,0,0,1,0,0,0,0,0,3,1,
+    1,0,1,0,1,0,1,1,1,1,1,1,0,1,1,0,1,1,1,1,1,0,1,1,0,1,0,1,
+    1,0,1,0,1,0,1,0,0,0,0,0,0,1,1,0,0,0,0,0,0,0,1,1,0,1,0,1,
+    1,0,1,0,1,0,1,1,1,1,1,1,0,1,1,0,1,1,1,1,1,0,1,1,0,1,0,1,
+    1,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,
+    1,1,1,1,1,1,1,1,1,1,1,0,0,0,0,0,0,1,1,1,1,0,1,1,1,1,1,1,
+    1,1,1,1,1,1,0,1,1,1,1,0,0,0,0,0,0,1,1,1,1,0,1,1,1,1,1,1,
+    1,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,1,
+    1,0,1,1,1,1,0,1,1,1,1,1,0,0,0,0,1,1,1,1,1,0,1,1,1,1,0,1,
+    1,0,1,0,1,1,0,1,1,0,0,0,0,0,0,0,0,0,0,1,1,0,1,1,0,1,0,1,
+    1,0,1,0,1,1,0,1,1,0,1,1,1,0,0,1,1,1,0,1,1,0,1,1,0,1,0,1,
+    1,0,1,0,1,1,0,1,1,0,1,0,0,0,0,0,0,1,0,1,1,0,1,1,0,1,0,1,
+    1,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,1,
+    1,1,1,1,0,1,0,1,1,0,1,1,1,0,0,1,1,1,0,1,1,0,1,0,1,1,0,1,
+    1,0,1,1,0,1,0,1,1,0,0,0,0,0,0,0,0,0,0,1,1,0,1,0,1,1,0,1,
+    1,0,1,1,1,1,0,1,1,0,1,1,1,1,1,1,1,1,0,1,1,0,1,1,1,1,0,1,
+    1,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,1,
+    1,0,1,1,1,1,0,1,1,1,1,1,0,1,1,0,1,1,1,1,1,0,1,1,1,1,0,1,
+    1,0,1,1,1,1,0,1,1,1,1,1,0,1,1,0,1,1,1,1,1,0,1,1,1,1,0,1,
+    1,0,0,0,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,0,0,0,1,
+    1,1,1,0,1,1,0,1,1,0,1,1,1,1,1,1,1,1,0,1,1,0,1,1,0,1,1,1,
+    1,0,1,0,1,1,0,1,1,0,1,1,1,1,1,1,1,1,0,1,1,0,1,1,0,1,1,1,
+    1,0,0,0,0,0,0,1,1,0,0,0,0,1,1,0,0,0,0,1,1,0,0,0,0,0,0,1,
+    1,0,1,1,0,1,1,0,0,1,1,1,0,1,1,0,1,1,1,0,0,1,1,0,1,1,0,1,
+    1,0,1,1,0,1,1,0,0,1,1,1,0,1,1,0,1,1,1,0,0,1,1,0,1,1,0,1,
+    1,0,0,0,0,0,1,0,0,0,0,0,0,1,0,0,0,0,0,0,1,0,0,0,0,0,0,1,
     1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1
   ]
-  // 0 - pac-dots
+
+  // 0 - empty
   // 1 - wall
-  // 2 - ghost-lair
-  // 3 - power-pellet
-  // 4 - empty
 
   const squares = []
 
@@ -50,18 +48,18 @@ document.addEventListener('DOMContentLoaded', () => {
   function createBoard() {
     for (let i = 0; i < layout.length; i++) {
       const square = document.createElement('div')
-      grid.appendChild(square)
+      maze.appendChild(square)
       squares.push(square)
 
       //add layout to the board
       if(layout[i] === 0) {
-        squares[i].classList.add('pac-dot') //not needed in MVP 
+        squares[i].classList.add('empty') //not needed in MVP 
       } else if (layout[i] === 1) {
         squares[i].classList.add('wall')
-      } else if (layout[i] === 2) {
-        squares[i].classList.add('ghost-lair')
-      } else if (layout[i] === 3) {
-        squares[i].classList.add('power-pellet') //not needed in MVP 
+     // } else if (layout[i] === 2) {
+     //   squares[i].classList.add('ghost-lair')
+     // } else if (layout[i] === 3) {
+     //   squares[i].classList.add('power-pellet') //not needed in MVP 
       }
     }
   }
@@ -71,9 +69,25 @@ document.addEventListener('DOMContentLoaded', () => {
   //create Characters
   //draw pacman onto the board
   let pacmanCurrentIndex = 729
-
   squares[pacmanCurrentIndex].classList.add('pac-man')
-  //get the coordinates of pacman on the grid with X and Y axis
+
+  let judyCurrentIndex = 54
+  squares[judyCurrentIndex].classList.add('judy')
+
+
+  let blinkyCurrentIndex = 32
+  squares[blinkyCurrentIndex].classList.add('blinky')
+
+  let pinkyCurrentIndex = 280 //pink
+  squares[pinkyCurrentIndex].classList.add('pinky')
+
+  let inkyCurrentIndex = 516 //green
+  squares[inkyCurrentIndex].classList.add('inky')
+
+  let claydeCurrentIndex = 735 // orange
+  squares[pinkyCurrentIndex].classList.add('clyde')
+
+  //get the coordinates of pacman on the maze with X and Y axis
   // function getCoordinates(index) {
   //   return [index % width, Math.floor(index / width)]
   // }
@@ -186,7 +200,7 @@ document.addEventListener('DOMContentLoaded', () => {
     new Ghost('clyde', 209, 999)
     ]
 
-  //draw my ghosts onto the grid
+  //draw my ghosts onto the maze
   ghosts.forEach(ghost => {
     squares[ghost.currentIndex].classList.add(ghost.className)
     squares[ghost.currentIndex].classList.add('ghost')
