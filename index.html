@@ -1,22 +1,37 @@
-<!DOCTYPE html>
-<html lang="en" dir="ltr">
-  <head>
-    <meta charset="utf-8">
-    <title>Pac-man: A Chinese Ghost Story</title>
-    <link rel="stylesheet" href="style.css">
-    <script src="app.js" charset="utf-8"></script>
-   <audio controls autoplay loop>
-  <source src="music.mp3" type="audio/mpeg">
-Your browser does not support the audio element.
-</audio>
+<!doctype html>
+<html lang="en">
 
-  <body>
-    <div class="maze"></div>
+<head>
+  <!-- Required meta tags -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-<h3>Start/Restart Game by CMD-R</b>
+  <title>Pac-man: A Chinese Ghost Story</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="app.js" charset="utf-8"></script>
+  <audio autoplay loop>
+    <source src="music.mp3" type="audio/mpeg">Your browser does not support the audio element.
+  </audio>
+</head>
 
-  <h3>Move Yellow Hero, Billie(宁采臣), using the arrow keys. Use z-key to return to origin.</b> 
-<h3> Watch out for MSM the chaos monkey!</h3>
-<h3>Timer countdown from 29 seconds! Avoid the ghosts (树精姥姥) and rescue Pinky(小倩).</h3>
-  </body>
+<body id="body"><center>
+  <h1 id="head">Re-imagined Pacman- A Chinese Ghost Story</h1>
+  <div class="maze"></div>
+  <p id="para"> <h3>You have <span id="countdowntimer">20</span> seconds left!</h3></p>
+  <script type="text/javascript">
+    var timeleft = 20;
+    var downloadTimer = setInterval(function() {
+      timeleft--;
+      document.getElementById("countdowntimer").textContent = timeleft;
+      if (timeleft <= 0)
+        clearInterval(downloadTimer);
+    }, 1000);
+  </script>
+      <h3><b><ul>Start/Restart Game by CMD-R</ul></b></h3>
+      <h3><ul>Timer countdown from 20 seconds! Avoid the ghosts (树精姥姥) and rescue Pinky(小倩).</ul></h3>
+      <h3><ul>Move Yellow Hero, Billie(宁采臣), using the arrow keys. Use z-key to return to origin.<ul></h3>
+      
+        </center>
+</body>
+
 </html>

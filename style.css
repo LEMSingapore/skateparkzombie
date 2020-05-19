@@ -1,45 +1,51 @@
+
+.head {
+  text-align: center;}
+
+.para {
+  text-align: center;}
+
 .maze {
-    display: flex;
-    flex-wrap: wrap;
-    width: 560px;
-    height: 560px;
-    border: solid black;
-}
-  
-.maze div {
-    width: 20px;
-    height: 20px;
+  display: flex;
+  flex-wrap: wrap;
+  width: 560px;
+  height: 560px;
+  border: solid black;
 }
 
+.maze div {
+  width: 20px;
+  height: 20px;
+}
 
 .wall {
-    background-color: black;
+  background-color: black;
 }
 
 .judy {
-    background-color: hotpink;
-    border-radius: 10px;
+  background-color: hotpink;
+  border-radius: 10px;
 }
 
 .blinky {
-    background-color: red;
+  background-color: blue;
 }
 
 .pinky {
-    background-color: pink;
+  background-color: red;
 }
 
 .inky {
-    background-color: green;
+  background-color: green;
 }
 
 .clyde {
-    background-color: orange;     
+  background-color: orange;
 }
 
 .pac-man {
-    background-color: yellow;
-    border-radius: 10px;
+  background-color: yellow;
+  border-radius: 10px;
 }
 
 /*.scared-ghost {
